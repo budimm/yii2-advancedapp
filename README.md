@@ -101,3 +101,28 @@ the installed application. You only need to do these once for all.
 
 To login into the application, you need to first sign up, with any of your email address, username and password.
 Then, you can login into the application with same email address and password at any time.
+
+extended no.4 
+https://ourcodeworld.com/articles/read/302/how-to-setup-a-virtual-host-locally-with-xampp-in-ubuntu
+
+            1. enable virtual server
+                sudo gedit /opt/lampp/etc/httpd.conf 
+                    enable this line
+                    Include etc/extra/httpd-vhosts.conf
+            2. create custom domain
+                sudo gedit /etc/hosts
+                    127.0.0.1   localhost   reigin.com
+                    127.0.0.2   front.com
+                    127.0.0.3   back.com
+            3. create vhosts:
+                sudo gedit /opt/lampp/etc/extra/httpd-vhosts.conf
+                    <VirtualHost 127.0.0.1:80>
+                        DocumentRoot "/opt/lampp/htdocs/my-first-project"
+                        DirectoryIndex index.php
+
+                        <Directory "/opt/lampp/htdocs/my-first-project">
+                            Options All
+                            AllowOverride All
+                            Require all granted
+                        </Directory>
+                    </VirtualHost>
